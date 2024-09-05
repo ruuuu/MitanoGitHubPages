@@ -1,6 +1,6 @@
 Сборка в папке dist
 Сервер выложен на https://diamond-trusting-hardcover.glitch.me
-
+Приложение вылодено на GitHubPages:  https://ruuuu.github.io/MitanoGitHubPages/
 
 Для публикации приложеня на GitHubPages:
 1) устанвоили пакет отсюда https://www.npmjs.com/package/gh-pages 
@@ -12,7 +12,7 @@ export default defineConfig(
  }
 ) 
 добавили base: './',
-
+4) после выпления команды npm run deploy, повится ветка gh-pages, переключиться на нее, проект опубликуется на githubPages,справа будет ссылка на задеплоенное приложение https://ruuuu.github.io/MitanoGitHubPages/
 
 
 npm run vite build -  соберет build сборку, файлы положатся в папку dist
