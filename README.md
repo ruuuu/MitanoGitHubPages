@@ -3,7 +3,16 @@
 Сервер выложен на https://diamond-trusting-hardcover.glitch.me
 
 
-Для публикации приложеня на GitHubPages устанвоили пакет отсюда https://www.npmjs.com/package/gh-pages и прописали в "scripts"(в package.json) команду "deploy": "gh-pages -d dist"
+Для публикации приложеня на GitHubPages:
+1) устанвоили пакет отсюда https://www.npmjs.com/package/gh-pages 
+2) прописали в "scripts"(в package.json) команду "deploy": "gh-pages -d dist"
+3) в конфиг файле vite.config.js в 
+export default defineConfig(
+ {
+   base: './',
+ }
+) 
+добавили base: './',
 
 
 
