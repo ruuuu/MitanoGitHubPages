@@ -1,0 +1,282 @@
+@use '../variables' as *;
+@use '../media' as *;
+
+
+.order {
+
+  position: fixed; // 
+  z-index: 999;
+  // растянется на всю ширину:
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none; // flex
+  padding: 9px;
+  background-color: rgba(0, 0, 0, 0.7);
+
+
+  &__wrapper {
+    max-width: 625px;
+    display: flex;
+    flex-direction: column;
+    margin: auto; // отцентрует
+    padding: 60px 32px;
+    border-radius: 32px;
+    background-color: $white;
+
+    @include mobile {
+      padding: 32px 16px;
+    }
+  }
+
+
+  &__title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 28px;
+    text-align: center;
+    color: $dark;
+
+    @include mobile {
+      margin-bottom: 24px;
+      font-size: 20px;
+    }
+  }
+
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+
+  &__fieldset {}
+
+
+  &__legend {
+    margin-bottom: 12px;
+    font-size: 18px;
+    color: $dark;
+
+    @include mobile {
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+  }
+
+
+  &__input-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+
+    @include mobile {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+
+
+  &__input {
+    width: calc(50% - 6px); // где 6px=gap/2
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background-color: $bg;
+
+    @include mobile {
+      width: 100%;
+    }
+
+    &--min {
+      width: calc(25% - 9px);
+
+      @include mobile {
+        width: calc(50% - 4px); // 4px = gap/2
+      }
+    }
+
+
+    &:hover {
+      background-color: $pattern;
+    }
+
+    &:focus-visible {
+      border-color: $light-orange;
+      outline: none;
+    }
+
+    &::placeholder {
+      color: rgba ($dark, 0.3);
+      outline: none;
+    }
+  }
+
+
+  &__payment {
+    margin-bottom: 12px;
+  }
+
+
+  &__label-radio {
+    position: relative;
+    display: block;
+    padding-left: 28px;
+  }
+
+
+  &__radio {
+    position: absolute;
+    appearance: none; // не отображает
+    width: 16px;
+    height: 16px;
+    top: 50%; //по вертикали
+    left: 0;
+    transform: translateY(-50%); //  чтоб отцентровтаь сам радиобатон
+
+    &::before {
+      // обводка у радиобаттона
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      border-radius: 50%;
+      border: 1px solid $orange;
+    }
+
+    &::after {
+      // кружочек у радибаттона
+      content: '';
+      position: absolute; // относиельно .input__radio
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $orange;
+      opacity: 0;
+    }
+
+    &:checked::after {
+      //выбранный радиобатон
+      opacity: 1;
+    }
+  }
+
+
+  &__delivery {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+
+    }
+  }
+
+
+  &__select-wrapper {
+    position: relative;
+    width: min-content;
+
+    &::after {
+      // стрелочка вниз
+      content: '';
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%); //  чтоб отцентровтаь 
+      display: block;
+      width: 8px;
+      height: 8px;
+      background-image: url('/img/arrow-down.svg');
+      background-repeat: no-repeat;
+      background-size: contain; // занимает все пространство
+      background-position: center;
+      pointer-events: none; // иначе не будет проходить клик по select
+      transition: transform 0.3s ease-in-out;
+    }
+
+    &--active ::after {
+      // стрелочка перевернутая вверх
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+
+  &__select {
+    width: 190px;
+    border-radius: 8px;
+    padding: 8px 40px 8px 16px;
+    background-color: $bg;
+    appearance: none; // убирает системную стрелочку
+    border: 1px solid transparent;
+
+    &:focus-visible {
+      border-color: $light-orange;
+      outline: none;
+    }
+  }
+
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  &__total-price {
+    font-size: 18px;
+    color: $dark;
+
+    @include mobile {
+      font-size: 14px;
+    }
+  }
+
+
+  &__button {
+    max-width: 274px;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 32px;
+    border: 1px solid transparent;
+    background-color: $light-orange;
+    color: $white;
+
+    &:hover {
+      background-color: $orange;
+    }
+
+    &:focus-visible {
+      border-color: $light-orange;
+      background-color: $orange;
+      outline: none;
+    }
+
+    @include mobile {
+      max-width: 169px;
+      font-size: 18px;
+    }
+  }
+
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+}

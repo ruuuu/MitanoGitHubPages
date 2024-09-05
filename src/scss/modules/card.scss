@@ -1,0 +1,115 @@
+@use '../variables' as *;
+@use '../media' as *;
+
+
+.card {
+  min-height: 531px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 32px;
+  overflow: hidden;
+  background-color: $white;
+
+  @include mobile {
+    min-height: 380px;
+    border-radius: 20px;
+  }
+
+  &__image {
+    object-fit: cover;
+    width: 100%;
+    height: 359px;
+
+    @include mobile {
+      height: 180px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    flex-grow: 1;
+    gap: 16px;
+
+    // display: grid;
+    // grid-template-rows: 1fr min-content; // 1-ая строка по максимуму будет занимать, 2-ая по размеру контента
+    // grid-template-columns: max-content 1fr;
+    // justify-content: space-between;
+
+
+    @include mobile {
+      padding: 16px 12px;
+      gap: 12px;
+    }
+
+  }
+
+  &__title {
+    // флекс элемент
+    flex-grow: 1;
+    //align-self: start; // выравнивание по вертикали
+    //grid-column: 1 / -1;
+    font-weight: 400;
+    font-size: 18px;
+    color: $dark;
+
+    @include mobile {
+      font-size: 14px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+  }
+
+  &__date-delivery {
+    padding-left: 20px;
+    background-image: url('/img/track.svg');
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    font-family: $font-family;
+    font-size: 14px;
+    line-height: 1.3;
+    color: $dark;
+
+    @include mobile {
+      font-size: 12px;
+    }
+  }
+
+  &__button {
+    // justify-self: end; // выравнивание по горизонтали
+    // align-self: start; // выравнивание по вертикали
+    min-width: 120px;
+    padding: 8px 16px;
+    background-color: $light-orange;
+    color: $white;
+    border-radius: 32px;
+
+    &:hover {
+      background-color: $orange;
+    }
+
+    &:active {
+      background-color: $orange;
+    }
+  }
+
+  &__price {
+    white-space: nowrap; // чтобы букву Р не отделяллась от цены
+  }
+
+  &__button-text {
+    display: none;
+  }
+}

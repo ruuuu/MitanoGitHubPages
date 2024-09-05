@@ -1,0 +1,201 @@
+@use '../variables' as *;
+@use '../media' as *;
+
+
+// https://codepen.io/Quper/pen/ZEywPZo
+
+.filter {
+  padding: 30px 0;
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+
+  &__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+
+
+  &__radio {
+    position: absolute;
+    appearance: none;
+
+    // &:focus+&__label {
+    //   background-color: $orange;
+    //   color: $white;
+    // }
+
+    &:focus-visible+&__label {
+      outline: 1px solid $orange;
+      outline-offset: 5px;
+    }
+
+    &:checked+&__label {
+      background-color: $light-orange;
+      color: $white;
+    }
+  }
+
+
+  &__label {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    padding-left: 60px;
+    min-height: 72px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 300px;
+    background-color: $white;
+    font-family: $font-family;
+    font-weight: 400;
+    line-height: 1.3;
+    color: $dark;
+
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: left 16px center; // слева на 16px
+
+    &:hover {
+      background-color: $orange;
+    }
+
+    &--flower {
+      background-image: url('/img/flower-filter.png'); // от папки public
+    }
+
+    &--toy {
+      background-image: url('/img/toy-filter.png');
+    }
+
+    &--card {
+      background-image: url('/img/card-filter.png');
+    }
+
+    @include mobile {
+      min-height: 40px;
+      padding: 10px;
+      padding-left: 40px;
+      background-size: 24px;
+      background-position: left 12px center; // слева на 12px
+    }
+  }
+
+
+  &__choices {
+    position: relative;
+  }
+
+
+  &__select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &::after {
+      // псевдоэлемент стрелочка (сделали псевдоэлементом т.к. стрелка меняется(преворачивается))
+      content: '';
+      background-image: url('/img/arrow-filter.svg');
+      width: 8px;
+      height: 8px;
+      background-repeat: no-repeat;
+      background-position: center contain; // contain - чтбы занимала все свободное простр-во
+      //transform: scale(-1);  // стрелочка перевернется
+    }
+
+    @include mobile {
+      gap: 40px;
+    }
+  }
+
+  &__choices-box {
+    position: absolute;
+    top: calc(100% + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 24px;
+    border-radius: 12px;
+    background-color: $white;
+
+    &--type {
+      padding: 16px;
+    }
+  }
+
+  &__price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 12px;
+  }
+
+
+  &__input-price {
+    width: 110px;
+    height: 40px;
+    padding: 8px 16px;
+    background-color: $bg;
+    border-radius: 32px;
+    border: 0;
+    font-size: 18px;
+    line-height: 1.3;
+    color: $dark;
+    outline: none;
+
+    &:hover {
+      border: 1px solid $light-orange;
+    }
+
+    @include mobile {
+      width: 80px;
+      font-size: 14px;
+    }
+  }
+
+
+  &__type-list {}
+
+
+  &__type-item {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+
+  &__type-btn {
+    font-size: 18px;
+    color: $dark;
+    line-height: 1.3;
+    white-space: nowrap;
+
+    &:hover {
+      color: $light-orange;
+    }
+
+    // &:active {
+    //   color: $orange;
+    // }
+
+    &--active {
+      color: $orange;
+    }
+  }
+
+}

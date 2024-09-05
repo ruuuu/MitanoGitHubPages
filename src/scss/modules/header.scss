@@ -1,0 +1,148 @@
+@use '../variables' as *;
+@use '../media' as *;
+
+// имя анимации slideDown
+@keyframes slideDown {
+
+  to {
+    top: 0;
+  }
+}
+
+
+.header {
+
+  padding: 32px 0;
+
+  &--fixed {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    right: 0;
+    z-index: 998;
+    box-shadow: 0 4px 2px -2px $footer;
+    background-color: $footer;
+    animation: slideDown 0.3s forwards; // slideDown -задали имя для анимации
+  }
+
+  @include mobile {
+    padding: 24px 0;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 30px;
+
+    @include tablet {
+      grid-template-areas:
+        '.    logo cart'
+        'form form form'
+      ;
+      gap: 32px 0;
+    }
+
+    @include mobile {
+      grid-template-areas:
+        'logo logo cart'
+        'form form form'
+      ;
+      gap: 24px 0;
+    }
+  }
+
+  &__form {
+    position: relative;
+    max-width: 420px;
+    width: 100%;
+    height: 40px;
+
+    @include laptop {
+      max-width: 302px;
+    }
+
+    @include tablet {
+      max-width: 100%;
+      grid-area: form;
+
+    }
+
+    @include mobile {}
+
+  }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    padding: 8px 56px 8px 16px;
+    border: none;
+
+    &:placeholder {
+      color: rgba($dark, 0.3);
+    }
+
+    &::-webkit-search-cancel-button {
+      // системная кнопка крестик
+      display: none;
+    }
+  }
+
+  &__search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+    // чтоб стрелочку отцентровать:
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $light-orange;
+    border-radius: 32px;
+  }
+
+  &__logo {
+    // грид элемент
+    justify-self: center; // выравнивание по горизонтали
+    width: 200px;
+
+    @include tablet {
+      grid-area: logo;
+    }
+
+    @include mobile {
+      width: 140px;
+      justify-self: start;
+    }
+  }
+
+  &__cart-btn {
+    // грид элемент
+    justify-self: end;
+    background-image: url('/img/cart.svg');
+    width: 28px;
+    height: 28px;
+    //background-size: 30px 30px;
+    background-position: center contain; // contain  чтоб не обрезалась картинка
+    background-repeat: no-repeat;
+    // чтобы цифра центровалась:
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-family: $font-family;
+
+    font-size: 14px;
+    line-height: 1.3;
+    text-align: center;
+    color: $orange;
+
+
+    @include tablet {
+      grid-area: cart;
+    }
+
+  }
+}
